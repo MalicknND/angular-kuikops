@@ -8,6 +8,7 @@ import { Component, type OnInit } from '@angular/core';
 })
 export class Binding implements OnInit {
   titre: string = 'Demo du data binding interpolation';
+  status: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}
