@@ -11,5 +11,9 @@ export class Binding implements OnInit {
   status: boolean = false;
   constructor() {}
 
+  ChangerTitre() {
+    this.titre = 'Titre changé';
+  }
+
   ngOnInit(): void {}
 }
