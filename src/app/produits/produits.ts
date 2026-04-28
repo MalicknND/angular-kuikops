@@ -15,9 +15,13 @@ export class ProduitsComponents implements OnInit {
   // un constructeur pour initialiser le tableau de produits avec des données fictives
   // avec l'injection du service ProduitService on a une seule instance de ce service pour toute l'application, donc on peut partager les données entre les composants
   constructor(private produitService: ProduitService) {
-    this.produits = []; // initialiser le tableau de produits avec des données fictives
-  }
-  ngOnInit(): void {
     this.produits = this.produitService.listeProduits();
+  }
+  ngOnInit(): void {}
+  supprimerProduit(p: ProduitModel) {
+    let conf = confirm('Etes-vous sûr ?');
+    if (conf) {
+      this.produitService.supprimerProduit(p); // supprimer le produit p du service
+    }
   }
 }
