@@ -6,7 +6,7 @@ import { ProduitModel } from '../model/produit.model';
 })
 export class ProduitService {
   produits: ProduitModel[]; // un tableau de produits
-  produit!: ProduitModel; // un objet pour stocker les données d'un produit
+  // produit!: ProduitModel; // un objet pour stocker les données d'un produit
 
   // un constructeur pour initialiser le tableau de produits avec des données fictives
   constructor() {
@@ -62,7 +62,14 @@ export class ProduitService {
 
   // une méthode pour consulter un produit du tableau de produits
   consulterProduit(id: number): ProduitModel {
-    this.produit = this.produits.find((p) => p.idProduit == id)!;
-    return this.produit;
+    return this.produits.find((p) => p.idProduit == id)!;
+  }
+
+  updaterProduit(p: ProduitModel) {
+    const index = this.produits.indexOf(p, 0);
+    if (index > -1) {
+      this.produits.splice(index, 1);
+      this.produits.splice(index, 0, p);
+    }
   }
 }
