@@ -1,50 +1,216 @@
-# AngularCourse
+# Gestionnaire de Produits - Application Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+Une application Angular moderne pour gérer une liste de produits avec système de catégories. Cette application permet de créer, consulter, modifier et supprimer des produits.
 
-## Development server
+**Version Angular** : 21.2.8+
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📋 Fonctionnalités
+
+- ✅ **Afficher la liste des produits** avec détails et catégories
+- ✅ **Ajouter un nouveau produit** avec sélection de catégorie
+- ✅ **Modifier un produit existant** (nom, prix, date, catégorie)
+- ✅ **Supprimer un produit** de la liste
+- ✅ **Sélectionner une catégorie** lors de l'ajout/modification
+- ✅ **Navigation entre les pages** via Angular Router
+
+---
+
+## 🏗️ Architecture
+
+### Structure du Projet
+
+```
+src/app/
+├── app.ts                          # Composant racine
+├── app.routes.ts                   # Configuration du routage
+├── app.config.ts                   # Configuration de l'application
+├── services/
+│   └── produit.ts                  # Service de gestion des produits
+├── model/
+│   ├── produit.model.ts            # Modèle Produit
+│   └── categorie.model.ts          # Modèle Catégorie
+├── produits/                       # Composant affichage de la liste
+│   ├── produits.ts
+│   ├── produits.html
+│   └── produits.css
+├── add-produit/                    # Composant d'ajout de produit
+│   ├── add-produit.ts
+│   └── add-produit.html
+└── update-produit/                 # Composant de modification de produit
+    ├── update-produit.ts
+    └── update-produit.html
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Modèles de Données
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+**Produit** :
+```typescript
+{
+  idProduit: number,
+  nomProduit: string,
+  prixProduit: number,
+  dateCreation: Date,
+  categorie: CategorieModel
+}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+**Catégorie** :
+```typescript
+{
+  idCat: number,
+  nomCat: string
+}
 ```
 
-## Building
+---
 
-To build the project run:
+## 🚀 Démarrage Rapide
+
+### Prérequis
+- Node.js 20+
+- Angular CLI 21+
+
+### Installation
 
 ```bash
+# Cloner le projet
+cd angular-course
+
+# Installer les dépendances
+npm install
+```
+
+### Serveur de développement
+
+```bash
+npm start
+```
+
+L'application sera accessible à `http://localhost:4200/`
+
+Elle se rechargera automatiquement à chaque modification du code.
+
+---
+
+## 🛠️ Commandes Disponibles
+
+```bash
+# Démarrer le serveur de développement
+npm start
+
+# Exécuter les tests unitaires
+npm test
+
+# Compiler pour la production
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 📱 Utilisation
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 1. Afficher les Produits
+- Accédez à la page principale pour voir la liste de tous les produits
+- Chaque produit affiche : ID, nom, prix, date de création et catégorie
 
-```bash
-ng test
+### 2. Ajouter un Produit
+- Cliquez sur le bouton "Ajouter un Produit"
+- Remplissez le formulaire avec :
+  - ID du produit
+  - Nom du produit
+  - Prix
+  - Date de création
+  - Sélectionnez une catégorie
+- Cliquez sur "Ajouter"
+
+### 3. Modifier un Produit
+- Cliquez sur le bouton "Modifier" du produit à éditer
+- Modifiez les informations
+- Cliquez sur "Valider"
+
+### 4. Supprimer un Produit
+- Cliquez sur le bouton "Supprimer" du produit concerné
+
+---
+
+## 📦 Service (ProduitService)
+
+Le service centralise la gestion des données :
+
+```typescript
+// Récupérer tous les produits
+produitService.listeProduits()
+
+// Consulter un produit par ID
+produitService.consulterProduit(id)
+
+// Ajouter un produit
+produitService.ajouterProduit(produit)
+
+// Modifier un produit
+produitService.updaterProduit(produit)
+
+// Supprimer un produit
+produitService.supprimerProduit(id)
+
+// Récupérer les catégories
+produitService.listeCategories()
+
+// Consulter une catégorie
+produitService.consulterCategorie(idCat)
 ```
 
-## Running end-to-end tests
+---
+
+## 🔄 Flux de Navigation
+
+```
+Produits (Liste)
+    ↓
+    ├→ Ajouter un Produit → Add-Produit (Formulaire)
+    │       ↓
+    │   Validation & Ajout
+    │       ↓
+    │   Retour à Produits
+    │
+    └→ Modifier un Produit → Update-Produit (Formulaire)
+            ↓
+        Validation & Modification
+            ↓
+        Retour à Produits
+```
+
+---
+
+## 📝 Notes de Développement
+
+- L'application utilise **Standalone Components** (Angular 14+)
+- Import des modules directement dans les composants
+- **FormsModule** pour les formulaires avec `[(ngModel)]`
+- **Router** pour la navigation entre pages
+- Les données sont stockées localement en mémoire
+
+---
+
+## 🐛 Dépannage
+
+**Erreur de casse dans les propriétés** :
+- TypeScript est sensible à la casse
+- Assurez-vous que `newIdcat` et `newIdCat` sont cohérents
+
+---
+
+## 📄 Licence
+
+MIT
+
+---
+
+## 👨‍💻 Auteur
+
+Projet de cours Angular
 
 For end-to-end (e2e) testing, run:
 
