@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProduitModel } from '../model/produit.model';
-import type { CategorieModel } from '../model/categorie.model';
+import { CategorieModel } from '../model/categorie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -78,5 +78,15 @@ export class ProduitService {
       this.produits.splice(index, 1);
       this.produits.splice(index, 0, p);
     }
+  }
+
+  // une méthode pour retourner la liste des catégories
+  listeCategories(): CategorieModel[] {
+    return this.categories;
+  }
+
+  // une méthode pour consulter une catégorie du tableau de catégories
+  consulterCategorie(id: number): CategorieModel {
+    return this.categories.find((c) => c.idCat == id)!;
   }
 }
