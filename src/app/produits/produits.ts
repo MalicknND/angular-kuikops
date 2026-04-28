@@ -1,5 +1,5 @@
 import { Component, type OnInit } from '@angular/core';
-import type { Produit } from '../model/produit.model';
+import { ProduitModel } from '../model/produit.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './produits.html',
   styleUrl: './produits.css',
 })
-export class Produits implements OnInit {
-  produits: Produit[]; // un tableau de produits
+export class ProduitsComponents implements OnInit {
+  produits: ProduitModel[]; // un tableau de produits
 
   // un constructeur pour initialiser le tableau de produits avec des données fictives
   constructor() {

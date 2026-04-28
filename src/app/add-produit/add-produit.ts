@@ -1,14 +1,14 @@
 import { Component, type OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Produit } from '../model/produit.model';
+import { ProduitModel } from '../model/produit.model';
 
 @Component({
   selector: 'app-add-produit',
   imports: [FormsModule],
   templateUrl: './add-produit.html',
 })
-export class AddProduit implements OnInit {
-  newProduit = new Produit(); // un objet pour stocker les données du nouveau produit
+export class AddProduitComponents implements OnInit {
+  newProduit = new ProduitModel(); // un objet pour stocker les données du nouveau produit
   constructor() {}
   ngOnInit(): void {}
   addProduit() {
