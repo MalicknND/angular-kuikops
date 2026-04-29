@@ -25,7 +25,7 @@ export class UpdateProduitComponent implements OnInit {
 
   ngOnInit(): void {
     // récupérer l'id du produit à modifier à partir de l'URL
-    this.categories = this.produitService.listeCategories(); // récupérer la liste des catégories à partir du service
+    // this.categories = this.produitService.listeCategories(); // récupérer la liste des catégories à partir du service
     this.currentProduit = this.produitService.consulterProduit(
       this.activatedRoute.snapshot.params['id'],
     );
@@ -33,7 +33,7 @@ export class UpdateProduitComponent implements OnInit {
   }
 
   updateProduit() {
-    this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId); // récupérer la catégorie sélectionnée à partir du service et l'affecter au produit à modifier
+    // this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId); // récupérer la catégorie sélectionnée à partir du service et l'affecter au produit à modifier
     this.produitService.updaterProduit(this.currentProduit); // modifier le produit dans le service
     this.router.navigate(['produits']); // naviguer vers la page des produits
   }

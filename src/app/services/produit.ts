@@ -8,12 +8,12 @@ import { CategorieModel } from '../model/categorie.model';
 export class ProduitService {
   produits: ProduitModel[]; // un tableau de produits
   // produit!: ProduitModel; // un objet pour stocker les données d'un produit
-  categories: CategorieModel[]; // un tableau de catégories
+  // categories: CategorieModel[]; // un tableau de catégories
   constructor() {
-    this.categories = [
-      { idCat: 1, nomCat: 'PC' },
-      { idCat: 2, nomCat: 'Imprimante' },
-    ];
+    // this.categories = [
+    //   { idCat: 1, nomCat: 'PC' },
+    //   { idCat: 2, nomCat: 'Imprimante' },
+    // ];
     this.produits = [
       {
         idProduit: 1,
@@ -80,13 +80,13 @@ export class ProduitService {
     }
   }
 
-  // une méthode pour retourner la liste des catégories
-  listeCategories(): CategorieModel[] {
-    return this.categories;
-  }
+  // // une méthode pour retourner la liste des catégories
+  // listeCategories(): CategorieModel[] {
+  //   return this.categories;
+  // }
 
-  // une méthode pour consulter une catégorie du tableau de catégories
-  consulterCategorie(id: number): CategorieModel {
-    return this.categories.find((c) => c.idCat == id)!;
-  }
+  // // une méthode pour consulter une catégorie du tableau de catégories
+  // consulterCategorie(id: number): CategorieModel {
+  //   return this.categories.find((c) => c.idCat == id)!;
+  // }
 }
