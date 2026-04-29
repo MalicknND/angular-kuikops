@@ -57,21 +57,9 @@ export class ProduitService {
   }
 
   // une méthode pour supprimer un produit du tableau de produits
-  supprimerProduit(p: ProduitModel) {
-    // supprimer le produit p du tableau de produits
-    console.log(p);
-    // this.produits = this.produits.filter((prod) => prod.idProduit != p.idProduit);
-    // ou bien
-    const index = this.produits.indexOf(p, 0);
-    if (index > -1) {
-      this.produits.splice(index, 1);
-    }
-    // Ou bien
-    // this.produits.forEach((cur, index) => {
-    //   if (p.idProduit === cur.idProduit) {
-    //     this.produits.splice(index, 1);
-    //   }
-    // });
+  supprimerProduit(id: number) {
+    const url = `${this.apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
   }
 
   // une méthode pour consulter un produit du tableau de produits

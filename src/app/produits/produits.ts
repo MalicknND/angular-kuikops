@@ -19,6 +19,10 @@ export class ProduitsComponents implements OnInit {
     // this.produits = this.produitService.listeProduits();
   }
   ngOnInit(): void {
+    this.chargerProduits();
+  }
+
+  chargerProduits() {
     this.produitService.listeProduits().subscribe((prods) => {
       console.log(prods);
       this.produits = prods;
@@ -28,7 +32,10 @@ export class ProduitsComponents implements OnInit {
   supprimerProduit(p: ProduitModel) {
     let conf = confirm('Etes-vous sûr ?');
     if (conf) {
-      this.produitService.supprimerProduit(p); // supprimer le produit p du service
+      this.produitService.supprimerProduit(p.idProduit).subscribe(() => {
+        console.log('produit supprimé');
+        this.chargerProduits(); // pour rafraichir la liste des produits après suppression
+      });
     }
   }
 }
