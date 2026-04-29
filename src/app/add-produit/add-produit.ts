@@ -24,10 +24,11 @@ export class AddProduitComponents implements OnInit {
   ngOnInit(): void {
     // this.categories = this.produitService.listeCategories(); // récupérer la liste des catégories à partir du service
   }
+
   addProduit() {
-    // this.newCategorie = this.produitService.consulterCategorie(this.newIdCat); // récupérer la catégorie sélectionnée à partir du service
-    this.newProduit.categorie = this.newCategorie; // affecter la catégorie au nouveau produit
-    this.produitService.ajouterProduit(this.newProduit); // ajouter le nouveau produit au service
-    this.router.navigate(['produits']); // rediriger vers la page de liste des produits
+    this.produitService.ajouterProduit(this.newProduit).subscribe((prod) => {
+      console.log(prod);
+      this.router.navigate(['produits']);
+    });
   }
 }

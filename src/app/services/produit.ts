@@ -52,8 +52,8 @@ export class ProduitService {
   }
 
   // une méthode pour ajouter un produit au tableau de produits
-  ajouterProduit(produit: ProduitModel) {
-    this.produits.push(produit);
+  ajouterProduit(produit: ProduitModel): Observable<ProduitModel> {
+    return this.http.post<ProduitModel>(this.apiURL, produit, httpOptions);
   }
 
   // une méthode pour supprimer un produit du tableau de produits
