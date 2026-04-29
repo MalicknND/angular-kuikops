@@ -11,14 +11,19 @@ import { RouterLink } from '@angular/router';
   styleUrl: './produits.css',
 })
 export class ProduitsComponents implements OnInit {
-  produits: ProduitModel[]; // un tableau de produits
+  produits: ProduitModel[] = []; // un tableau de produits
 
   // un constructeur pour initialiser le tableau de produits avec des données fictives
   // avec l'injection du service ProduitService on a une seule instance de ce service pour toute l'application, donc on peut partager les données entre les composants
   constructor(private produitService: ProduitService) {
-    this.produits = this.produitService.listeProduits();
+    // this.produits = this.produitService.listeProduits();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.produitService.listeProduits().subscribe((prods) => {
+      console.log(prods);
+      this.produits = prods;
+    });
+  }
 
   supprimerProduit(p: ProduitModel) {
     let conf = confirm('Etes-vous sûr ?');

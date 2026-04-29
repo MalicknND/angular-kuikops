@@ -15,19 +15,8 @@
             </tr>
           </thead>
         }
-
-        <!--   -->
-        @for (
-          produit of produits;
-          track produit.idProduit;
-          let i = $index;
-          let nbr = $count;
-          let first = $first
-        ) {
-          @if (first) {
-            <h4>Nombre de produits : {{ nbr }}</h4>
-          }
-          <tbody>
+        <tbody>
+          @for (produit of produits; track produit.idProduit; let i = $index) {
             <tr>
               <td>{{ i + 1 }}</td>
               <td>{{ produit.idProduit }}</td>
@@ -42,10 +31,12 @@
               </td>
               <td><a class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</a></td>
             </tr>
-          </tbody>
-        } @empty {
-          <h1>Aucun produit trouvé</h1>
-        }
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center">Aucun produit trouvé</td>
+            </tr>
+          }
+        </tbody>
       </table>
     </div>
   </div>

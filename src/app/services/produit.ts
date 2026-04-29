@@ -1,47 +1,54 @@
 import { Injectable } from '@angular/core';
 import { ProduitModel } from '../model/produit.model';
 import { CategorieModel } from '../model/categorie.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProduitService {
-  produits: ProduitModel[]; // un tableau de produits
+  produits: ProduitModel[] = []; // un tableau de produits
   // produit!: ProduitModel; // un objet pour stocker les données d'un produit
   // categories: CategorieModel[]; // un tableau de catégories
-  constructor() {
+  apiURL: string = 'http://localhost:8081/produits/api';
+  constructor(private http: HttpClient) {
     // this.categories = [
     //   { idCat: 1, nomCat: 'PC' },
     //   { idCat: 2, nomCat: 'Imprimante' },
     // ];
     this.produits = [
-      {
-        idProduit: 1,
-        nomProduit: 'PC Asus',
-        prixProduit: 3000.6,
-        dateCreation: new Date('01/14/2011'),
-        categorie: { idCat: 1, nomCat: 'PC' },
-      },
-      {
-        idProduit: 2,
-        nomProduit: 'Imprimante Epson',
-        prixProduit: 450,
-        dateCreation: new Date('12/17/2010'),
-        categorie: { idCat: 2, nomCat: 'Imprimante' },
-      },
-      {
-        idProduit: 3,
-        nomProduit: 'Tablette Samsung',
-        prixProduit: 900.123,
-        dateCreation: new Date('02/20/2020'),
-        categorie: { idCat: 1, nomCat: 'PC' },
-      },
+      // {
+      //   idProduit: 1,
+      //   nomProduit: 'PC Asus',
+      //   prixProduit: 3000.6,
+      //   dateCreation: new Date('01/14/2011'),
+      //   categorie: { idCat: 1, nomCat: 'PC' },
+      // },
+      // {
+      //   idProduit: 2,
+      //   nomProduit: 'Imprimante Epson',
+      //   prixProduit: 450,
+      //   dateCreation: new Date('12/17/2010'),
+      //   categorie: { idCat: 2, nomCat: 'Imprimante' },
+      // },
+      // {
+      //   idProduit: 3,
+      //   nomProduit: 'Tablette Samsung',
+      //   prixProduit: 900.123,
+      //   dateCreation: new Date('02/20/2020'),
+      //   categorie: { idCat: 1, nomCat: 'PC' },
+      // },
     ];
   }
 
   // une méthode pour retourner la liste des produits
-  listeProduits(): ProduitModel[] {
-    return this.produits;
+  listeProduits(): Observable<ProduitModel[]> {
+    return this.http.get<ProduitModel[]>(this.apiURL);
   }
 
   // une méthode pour ajouter un produit au tableau de produits
